@@ -1511,7 +1511,7 @@
 // DATA
 // ============================================================
 const CAKES = [
-  { id: 0,  name: "Medovik",       emoji: "🍯", category: "Classic",  tag: "Best Seller", desc: "A beloved Russian honey layer cake with thin, crispy honey-infused layers and velvety sour cream filling. Each bite melts away into layers of sweet nostalgia.", size: "6–25 servings" },
+  { id: 0,  name: "Medovik",       image:"https://i.imgur.com/Q62En7b.jpg", category: "Classic",  tag: "Best Seller", desc: "A beloved Russian honey layer cake with thin, crispy honey-infused layers and velvety sour cream filling. Each bite melts away into layers of sweet nostalgia.", size: "6–25 servings" },
   { id: 1,  name: "Milky Girl",    emoji: "🥛", category: "Classic",  tag: "Fan Favorite", desc: "Ultra-thin, delicate crepes made with condensed milk, layered with clouds of whipped cream. Light, elegant, and endlessly satisfying.", size: "8–20 servings" },
   { id: 2,  name: "Napoleon",      emoji: "📐", category: "Classic",  tag: "Signature", desc: "The iconic French-Russian layered mille-feuille with impossibly flaky pastry and rich vanilla custard cream. A showstopper at any table.", size: "10–30+ servings" },
   { id: 3,  name: "Kievsky",       emoji: "🌸", category: "Nut",  tag: "Classic", desc: "A legendary Ukrainian masterpiece — crisp meringue cake with roasted hazelnuts and walnuts, bound together with a rich buttercream. Complex, elegant, unforgettable.", size: "8–20 servings" },
@@ -1606,7 +1606,7 @@ function buildRibbon() {
   track.innerHTML = allCakes.map((cake, i) => `
     <div class="cake-card" onclick="openCakeModal(${cake.id})" data-index="${i}">
       <div class="cake-thumb">
-        <div class="cake-thumb-emoji">${cake.emoji}</div>
+        <img src="${cake.image}" alt="${cake.name}" style="width:100%;height:100%;object-fit:cover;">
         <div class="cake-thumb-overlay"></div>
       </div>
       <div class="cake-card-body">
@@ -1723,7 +1723,7 @@ function openCakeModal(id) {
 }
 
 function populateModal(cake) {
-  document.getElementById('cakeModalEmoji').textContent = cake.emoji;
+  document.getElementById('cakeModalEmoji').innerHTML = `<img src="${cake.image}" alt="${cake.name}" style="width:100%;height:260px;object-fit:cover;border-radius:0;">`;
   document.getElementById('cakeModalTitle').textContent = cake.name;
   document.getElementById('cakeModalDesc').textContent = cake.desc;
   document.getElementById('cakeModalTag').textContent = cake.tag;
@@ -1784,9 +1784,7 @@ function renderGallery() {
   const filtered = activeFilter === 'All' ? CAKES : CAKES.filter(c => c.category === activeFilter);
   grid.innerHTML = filtered.map(cake => `
     <div class="gallery-item" onclick="openCakeModal(${cake.id})">
-      <div class="gallery-item-inner">
-        <div class="gallery-emoji">${cake.emoji}</div>
-      </div>
+      <img src="${cake.image}" alt="${cake.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
       <div class="gallery-overlay">
         <div class="gallery-item-name">${cake.name}</div>
       </div>
